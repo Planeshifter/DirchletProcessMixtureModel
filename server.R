@@ -2,7 +2,7 @@ library(shiny)
 library(shinyIncubator)
 library(ggplot2)
 library(MCMCpack)
-source('~/DirichletMixtureModel/GenerativeModel.R', echo=TRUE)
+source('GenerativeModel.R', echo=TRUE)
 
 shinyServer(function(input, output) {
    
