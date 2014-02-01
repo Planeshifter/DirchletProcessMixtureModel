@@ -8,13 +8,14 @@
 library(shiny)
 
 shinyUI(pageWithSidebar(
-  
   # Application title
-  headerPanel("Clustered Observations"),
+  headerPanel("Dirichlet Process Mixture Modelling"),
   
   # Sidebar with a slider input for number of observations
   sidebarPanel(
     tags$head( tags$script(src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS_HTML") ),
+    tabsetPanel(
+      tabPanel("Generate Observations",
     sliderInput("obs", 
                 "Number of observations:", 
                 min = 1, 
@@ -23,15 +24,37 @@ shinyUI(pageWithSidebar(
     sliderInput("K",
                 "Number of clusters",
                  min = 1,
-                max = 25,
+                max = 20,
                 value = 4),
     numericInput("Rho",
                  "\\( \\rho \\): Variance of \\( \\theta_k \\)", value=1, min=0,max=100),
     matrixInput('Sigma', '\\( \\Sigma \\): Covariance Matrix of \\( x_i \\)', data.frame(diag(2)))
-  ),
+      ),
+    tabPanel("DP-Means",
+             sliderInput("lambda",
+                         "Penalty parameter \\( \\lambda \\)",
+                         min = 1,
+                         max = 200,
+                         value = 100)
+             )
+  )),
   
   # Show a plot of the generated distribution
   mainPanel(
-    plotOutput("distPlot")
+    tabsetPanel(
+      tabPanel("DGP", plotOutput("distPlot")),
+      tabPanel("Prediction",plotOutput("estPlot")),
+      tabPanel("Code",
+               h3(HTML("GenerativeModel.R")),
+               HTML('<script src="https://gist.github.com/Planeshifter/78ffd1858e98846fe6da.js"></script>'),
+               h3(HTML("DP_means.cpp")),
+               HTML('<script src="https://gist.github.com/Planeshifter/66e156cabf48261e6123.js"></script>'),
+               h3(HTML("ui.R")),
+               HTML('<script src="https://gist.github.com/Planeshifter/78ffd1858e98846fe6da.js"></script>'),
+               h3(HTML("server.R")),
+               HTML('<script src="https://gist.github.com/Planeshifter/66e156cabf48261e6123.js"></script>')
+               )
+               )
+          )
   )
-))
+)
