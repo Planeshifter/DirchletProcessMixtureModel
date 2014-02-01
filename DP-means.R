@@ -1,6 +1,5 @@
 
-
-# 
+# adapted from https://github.com/johnmyleswhite/bayesian_nonparametrics/blob/master/code/dp-means/dp-means.R
 # assumes x is a data frame where the columns are the features x_1, x_2, etc. 
 #
 dp.means = function(data, lambda, max.iterations = 100, tolerance = 10e-3)
