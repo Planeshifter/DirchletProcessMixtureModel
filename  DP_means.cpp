@@ -33,7 +33,8 @@ NumericVector subsetter(NumericVector input_vec, LogicalVector cond) {
 // ----------------------------------------------------------------
 
 // [[Rcpp::export]]
-List dp_means(NumericVector x1, NumericVector x2, double lambda, int max_iterations = 50, double tolerance = 10e-3)
+List dp_means(NumericVector x1, NumericVector x2, double lambda, 
+int max_iterations = 50, double tolerance = 10e-3)
   {
   int K = 1; // set number of clusters k equal to one
    
@@ -68,7 +69,8 @@ List dp_means(NumericVector x1, NumericVector x2, double lambda, int max_iterati
         squared_distances[k] = pow(x1_dist, 2) + pow(x2_dist, 2); // compute squared Euclidean distance 
         }
 
-      NumericVector::iterator it = min_element(squared_distances.begin(), squared_distances.end());
+      NumericVector::iterator it = min_element(squared_distances.begin(), 
+        squared_distances.end());
       double min_Value = *it;
       if (min_Value > lambda) 
        {
@@ -103,7 +105,8 @@ List dp_means(NumericVector x1, NumericVector x2, double lambda, int max_iterati
         double cluster = labels[i];
         double x1_cluster_mean = mu_x1[cluster];
         double x2_cluster_mean = mu_x2[cluster];
-        wcss_new = wcss_new + pow(x1[i] - x1_cluster_mean, 2) + pow(x2[i] - x2_cluster_mean, 2);
+        wcss_new = wcss_new + pow(x1[i] - x1_cluster_mean, 2) + 
+                                    pow(x2[i] - x2_cluster_mean, 2);
       }
     
     double wcss_change = wcss_old - wcss_new;
@@ -115,7 +118,7 @@ List dp_means(NumericVector x1, NumericVector x2, double lambda, int max_iterati
       }
     }
 
-  List ret = List::create(Named("x1") = mu_x1, Named("x2") = mu_x2, Named("K")=K, Named("labels") = labels,
-  Named("iterations") = iteration);
+  List ret = List::create(Named("x1") = mu_x1, Named("x2") = mu_x2, Named("K")=K, 
+  Named("labels") = labels, Named("iterations") = iteration);
   return ret;
   }
