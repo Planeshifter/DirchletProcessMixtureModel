@@ -115,7 +115,7 @@ List dp_means(NumericVector x1, NumericVector x2, double lambda, int max_iterati
       }
     }
 
-  List ret = List::create(Named("x1") = mu_x1, Named("x2") = mu_x2, Named("K")=K, Named("labels") = labels,
+  List ret = List::create(Named("mu_x1") = mu_x1, Named("mu_x2") = mu_x2, Named("K")=K, Named("labels") = labels,
   Named("iterations") = iteration);
   return ret;
   }

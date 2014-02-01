@@ -1,7 +1,7 @@
 generate_clustered_obs = function(K, n, alpha0, Sigma, rho)
 {
 require(MCMCpack)
-g = rdirichlet(1, rep(1.1,times=K))
+g = rdirichlet(1, rep(alpha0,times=K))
 theta = matrix(data=0, nrow=K, ncol=2)
 
 for (k in 1:K)
