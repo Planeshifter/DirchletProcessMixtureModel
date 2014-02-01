@@ -2,11 +2,15 @@ library(shiny)
 library(shinyIncubator)
 library(ggplot2)
 library(MCMCpack)
+<<<<<<< HEAD
 library(Rcpp)
 
 source('GenerativeModel.R', echo=TRUE)
 source('DP-means.R', echo=TRUE)
 Rcpp::sourceCpp('DP_means.cpp')
+=======
+source('GenerativeModel.R', echo=TRUE)
+>>>>>>> efe9aacf27d547d6ec80a22c54e9cb70892e3cc9
 
 shinyServer(function(input, output) {
   
