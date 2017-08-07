@@ -6,6 +6,7 @@
 #
 
 library(shiny)
+library(shinyIncubator)
 
 shinyUI(pageWithSidebar(
   # Application title
